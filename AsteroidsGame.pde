@@ -1,6 +1,6 @@
 //your variable declarations here
 Spaceship fox;
-Star lots;
+Star[] lots;
 
 boolean accel = false;
 boolean deccel = false;
@@ -10,17 +10,27 @@ public void setup()
 {
   size(600,600);
   fox = new Spaceship();
+  lots = new Star[100];
+  for (int i = 0; i < lots.length; i++)
+  {
+    lots[i] = new Star();
+  }
   //your code here
 }
 public void draw() 
 {
   background(0);
-  fox.show();
-  fox.move();
-  if (accel == true) fox.accelerate(0.2);
-  if (deccel == true) fox.accelerate(-0.2);
+  
+  if (accel == true) fox.accelerate(0.1);
+  if (deccel == true) fox.accelerate(-0.1);
   if (rotateLeft == true) fox.turn(-5);
   if (rotateRight == true) fox.turn(5);
+  for (int i = 0; i < lots.length; i++)
+  {
+    lots[i].show();
+  }
+  fox.show();
+  fox.move();
   //your code here
 }
 public void keyPressed()
@@ -29,6 +39,12 @@ public void keyPressed()
   if(keyCode == LEFT)rotateLeft = true;
   if(keyCode == RIGHT)rotateRight = true;
   if(keyCode == DOWN) deccel = true;
+  //hyperspace
+  if(key == ' ')
+  {
+    fox.setX((int)(Math.random()*600));
+    fox.getX();
+  }
    
 }
 
