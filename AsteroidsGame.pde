@@ -42,8 +42,11 @@ public void keyPressed()
   //hyperspace
   if(key == ' ')
   {
-    fox.setX((int)(Math.random()*600));
-    fox.getX();
+    fox.setX((int)(Math.random()*width));
+    fox.setY((int)(Math.random()*height));
+    fox.setPointDirection((int)(Math.random()*360));
+    fox.setDirectionX(0);
+    fox.setDirectionY(0);
   }
    
 }

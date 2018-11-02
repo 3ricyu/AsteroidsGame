@@ -11,7 +11,7 @@ class Star //note that this class does NOT extend Floater
   }
   public void show()
   {
-    stroke(starColor );
+    stroke(starColor,30 );
     fill(starColor);
     ellipse((float)starX,(float)starY,5,5);
   }
