@@ -1,7 +1,7 @@
 //your variable declarations here
 Spaceship fox;
 Star[] lots;
-Asteroids[] rocks;
+ArrayList<Asteroids> rocks;
 
 boolean accel = false;
 boolean deccel = false;
@@ -12,14 +12,15 @@ public void setup()
   size(600,600);
   fox = new Spaceship();
   lots = new Star[100];
-  rocks = new Asteroids[30];
+  rocks = new ArrayList<Asteroids>();
+  
   for (int i = 0; i < lots.length; i++)
   {
     lots[i] = new Star();
   }
-  for (int i = 0; i < rocks.length; i++)
+  for (int i = 0; i < 30; i++)
   {
-    rocks[i] = new Asteroids();
+    rocks.add(new Asteroids());
   }
   //your code here
 }
@@ -27,18 +28,21 @@ public void draw()
 {
   background(0);
   
-  if (accel == true) fox.accelerate(0.1);
-  if (deccel == true) fox.accelerate(-0.1);
+  if (accel == true) fox.accelerate(0.05);
+  if (deccel == true) fox.accelerate(-0.05);
   if (rotateLeft == true) fox.turn(-5);
   if (rotateRight == true) fox.turn(5);
   for (int i = 0; i < lots.length; i++)
   {
     lots[i].show();
   }
-  for (int i = 0; i < rocks.length; i++)
+  for (int i = 0; i < rocks.size(); i++)
   {
-    rocks[i].show();
-    rocks[i].move();
+   rocks.get(i).show();
+   rocks.get(i).move();
+   float d = dist(fox.getX(),fox.getY(),rocks.get(i).getX(),rocks.get(i).getY());
+   if (d < 10)
+     rocks.remove(i);
   }
   fox.show();
   fox.move();

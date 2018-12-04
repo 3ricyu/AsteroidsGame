@@ -2,21 +2,23 @@ class Asteroids extends Floater
 {
   private int rotSpeed;
   public Asteroids(){
-    corners = 6;
+    corners = 7;
     xCorners = new int[corners];
     yCorners = new int[corners];
     xCorners[0] = -11;
     yCorners[0] = -8;
-    xCorners[1] = 7;
-    yCorners[1] = -8;
-    xCorners[2] = 13;
-    yCorners[2] = 0;
-    xCorners[3] = 6;
-    yCorners[3] = 10;
-    xCorners[4] = -11;
+    xCorners[1] = -2;
+    yCorners[1] = -10;
+    xCorners[2] = 7;
+    yCorners[2] = -8;
+    xCorners[3] = 13;
+    yCorners[3] = 0;
+    xCorners[4] = 7;
     yCorners[4] = 8;
-    xCorners[5] = -5;
-    yCorners[5] = 0;
+    xCorners[5] = -2;
+    yCorners[5] = 10;
+    xCorners[6] = -13;
+    yCorners[6] = 0;
     
     myColor = color(#552323);
     
