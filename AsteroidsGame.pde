@@ -1,5 +1,6 @@
 //your variable declarations here
 Spaceship fox;
+ArrayList<Bullet> shots;
 Star[] lots;
 ArrayList<Asteroids> rocks;
 
@@ -7,9 +8,11 @@ boolean accel = false;
 boolean deccel = false;
 boolean rotateRight = false;
 boolean rotateLeft = false;
+
 public void setup() 
 {
   size(600,600);
+  shots = new ArrayList<Bullet>();
   fox = new Spaceship();
   lots = new Star[100];
   rocks = new ArrayList<Asteroids>();
@@ -41,12 +44,32 @@ public void draw()
    rocks.get(i).show();
    rocks.get(i).move();
    float d = dist(fox.getX(),fox.getY(),rocks.get(i).getX(),rocks.get(i).getY());
-   if (d < 10)
+   if (d < 18)
      rocks.remove(i);
+  }
+  for (int i = 0; i < shots.size(); i++)
+  {
+   
+   shots.get(i).show();
+   shots.get(i).move();
+  }
+  
+  for(int k = 0; k < rocks.size(); k++)
+  {
+    for(int j = 0; j < shots.size(); j++)
+    {
+      float b = dist((float)shots.get(j).getX(), (float)shots.get(j).getY(), (float)rocks.get(k).getX(), (float)rocks.get(k).getY());
+      if(b < 20)
+      {
+        shots.remove(j);
+        rocks.remove(k);
+        break;
+      }
+    }
   }
   fox.show();
   fox.move();
-  //your code here
+  
 }
 public void keyPressed()
 {
@@ -55,7 +78,7 @@ public void keyPressed()
   if(keyCode == RIGHT)rotateRight = true;
   if(keyCode == DOWN) deccel = true;
   //hyperspace
-  if(key == ' ')
+  if(keyCode == SHIFT)
   {
     fox.setX((int)(Math.random()*width));
     fox.setY((int)(Math.random()*height));
@@ -63,6 +86,8 @@ public void keyPressed()
     fox.setDirectionX(0);
     fox.setDirectionY(0);
   }
+  if(key == ' ')
+    shots.add(new Bullet(fox));
    
 }
 
